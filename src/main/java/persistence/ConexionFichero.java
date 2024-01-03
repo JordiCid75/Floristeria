@@ -14,6 +14,8 @@ import java.io.IOException;
 public class ConexionFichero implements IConexion {
 	private String camino;
 	private String nombre;
+	private JsonNode content;
+	
 
 	public String getCamino() {
 		return camino;
@@ -36,7 +38,7 @@ public class ConexionFichero implements IConexion {
 
 	}
 
-	public JsonNode leer() {
+	private JsonNode leer() {
 		JsonNode jsonNode = null;
 		if (this.nombre != null) {
 			// Crear un objeto ObjectMapper (de Jackson)
@@ -81,15 +83,27 @@ public class ConexionFichero implements IConexion {
 	}
 
 	@Override
-	public void conectar() {
+	public void excribir() {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
-	public void desconectar() {
+	public String getField(String string) {
 		// TODO Auto-generated method stub
+		return content.get(string).asText();
+	}
 
+	@Override
+	public void getContent() {
+		// TODO Auto-generated method stub
+		content = leer();
+	}
+
+	@Override
+	public void setNombreTabla(String string) {
+		// TODO Auto-generated method stub
+		setNombre(string);
 	}
 
 }

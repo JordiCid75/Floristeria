@@ -1,4 +1,4 @@
-package entities;
+package GUI;
 
 import java.util.ArrayList;
 
