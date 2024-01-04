@@ -22,7 +22,6 @@ public class App {
 		// lo que hay que ver es si se pueden hacer lecturas parciales para que sea
 		// efectivo en caso de tener muchos productos
 
-
 		Stock st = new Stock();
 		Producto p = new Producto(1);
 		StockItem sti = new StockItem(p, 0);

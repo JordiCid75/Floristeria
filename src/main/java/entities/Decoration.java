@@ -1,6 +1,6 @@
-package App;
+package entities;
 
- enum Material{WOOD, PLASTIC}
+enum Material{WOOD, PLASTIC}
 
 public class Decoration extends Product{
     private Material material;

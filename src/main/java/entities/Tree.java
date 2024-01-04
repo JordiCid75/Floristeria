@@ -1,11 +1,11 @@
-package App;
+package entities;
 
-public class Flower extends Product{
+public class Tree extends Product{
 
-    private String colour;
-    public Flower(String name, float price, int quantityByProduct, String colour) {
+    private float height;
+    public Tree(String name, float price, int quantityByProduct, float height) {
         super(name, price, quantityByProduct);
-        this.colour = colour;
+        this.height = height;
     }
 
     @Override
@@ -14,7 +14,7 @@ public class Flower extends Product{
         return "Id: " + id + "\n" +
                 "Name: " + name + "\n" +
                 "Price: " + price + "\n" +
-                "Colour: " + colour + "\n" +
+                "Height: " + height + "\n" +
                 "Quantity: " + quantityByProduct + "\n";
     }
 }
