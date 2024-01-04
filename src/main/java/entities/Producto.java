@@ -8,6 +8,9 @@ public class Producto {
 	public Producto(int _id) {
 		this.setId(_id);
 	}
+	public Producto() {
+		this.id = contador++;
+		}
 
 	public void setId(int _id) {
 		id = _id;
