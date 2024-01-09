@@ -5,13 +5,13 @@ import org.json.JSONObject;
 public class Decoration extends Product {
 	private Material material;
 
-	public Decoration(String name, float price, Material material) {
+	public Decoration(String name, double price, Material material) {
 		super(name, price);
 		this.material = material;
 		this.type = Decoration.class.toString();
 	}
 
-	public Decoration(int _id, String name, float price, Material material) {
+	public Decoration(int _id, String name, double price, Material material) {
 		super(_id);
 		this.setName(name);
 		this.setPrice(price);

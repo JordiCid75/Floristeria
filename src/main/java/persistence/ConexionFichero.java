@@ -96,11 +96,18 @@ public class ConexionFichero implements IConexion {
 		}
 
 	}
+	
 
 	@Override
 	public void setNombreTabla(String string) {
 		// TODO Auto-generated method stub
 		setNombre(string);
+	}
+
+	@Override
+	public JsonNode getContentNodes() {
+		// TODO Auto-generated method stub
+		return content;
 	}
 
 }
