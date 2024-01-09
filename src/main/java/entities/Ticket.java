@@ -17,7 +17,7 @@ public class Ticket {
     }
 
     public void removeProduct(Product product) {
-        this.products.add(product);
+        this.products.remove(product);
     }
 
     @Override
