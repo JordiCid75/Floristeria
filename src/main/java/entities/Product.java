@@ -4,23 +4,20 @@ public abstract class Product {
 
 	protected float price;
 	protected String name;
-//    private static int quantity;
-//    protected int quantityByProduct;
 	protected int id;
-	private static int contador = 1;
+	private static int counter = 1;
 
-	public Product(int _id) {
-		this.setId(_id);
-	}
 
-	public Product(String name, float price) // , int quantityByProduct )
+	public Product(String name, float price)
 	{
 		this.name = name;
 		this.price = price;
-		this.setId(contador++);
-//        this.quantityByProduct = quantityByProduct;
-//        quantity++;
-//        id = quantity;
+		this.setId(counter++);
+
+	}
+
+	public int getId() {
+		return id;
 	}
 
 	public float getPrice() {
@@ -41,15 +38,10 @@ public abstract class Product {
 
 	public void setId(int _id) {
 		this.id = _id;
-		if (contador < _id) {
-			contador = _id;
+		if (counter < _id) {
+			counter = _id;
 		}
 
 	}
 
-/*	public float calculateTotalPrice() {
-		return price * quantityByProduct;
-	}
-*/
-	
 }

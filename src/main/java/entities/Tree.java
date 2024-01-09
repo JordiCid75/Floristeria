@@ -3,8 +3,8 @@ package entities;
 public class Tree extends Product{
 
     private float height;
-    public Tree(String name, float price, int quantityByProduct, float height) {
-        super(name, price, quantityByProduct);
+    public Tree(String name, float price, float height) {
+        super(name, price);
         this.height = height;
     }
 
@@ -13,8 +13,9 @@ public class Tree extends Product{
     {
         return "Id: " + id + "\n" +
                 "Name: " + name + "\n" +
-                "Price: " + price + "\n" +
-                "Height: " + height + "\n" +
-                "Quantity: " + quantityByProduct + "\n";
+                "Type: Tree" + "\n" +
+                "Price: " + price + "€\n" +
+                "Height: " + height + "m\n";
+
     }
 }
