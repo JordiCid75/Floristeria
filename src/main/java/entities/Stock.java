@@ -12,8 +12,8 @@ public class Stock {
 
 	public Stock() {
 		// TODO Auto-generated constructor stub
-		stBD.LeerBD();
-		this.readListaStockBD();
+		stBD.LeerBD(); // esto carga el contenido del fichero en memoria
+		this.readListaStockBD(); // esto carga lo leido desde el fichero a la lista de stock
 	}
 
 	private void readListaStockBD() {
