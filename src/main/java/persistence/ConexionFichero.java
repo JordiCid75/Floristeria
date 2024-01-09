@@ -15,7 +15,6 @@ public class ConexionFichero implements IConexion {
 	private String camino;
 	private String nombre;
 	private JsonNode content;
-	
 
 	public String getCamino() {
 		return camino;
@@ -56,17 +55,10 @@ public class ConexionFichero implements IConexion {
 				// Por ejemplo, si el JSON es un objeto:
 				// MiObjeto miObjeto = objectMapper.treeToValue(jsonNode, MiObjeto.class);
 				// return null;
+			} catch (IOException e) {
+				System.out.println(e.getMessage());
 			}
-			catch (IOException e) {
-				e.printStackTrace();
-			}
-			
-			// try (FileReader reader = new FileReader(this.nombre)) {
-			// Crear un objeto JSON desde el archivo
-			// JSONObject jsonObject = new JSONObject(new String(reader.));
 
-			// Acceder a los datos
-			// return jsonObject;
 		}
 		return jsonNode;
 
@@ -85,7 +77,7 @@ public class ConexionFichero implements IConexion {
 	@Override
 	public void excribir() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -97,7 +89,12 @@ public class ConexionFichero implements IConexion {
 	@Override
 	public void getContent() {
 		// TODO Auto-generated method stub
-		content = leer();
+		try {
+			content = leer();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+
 	}
 
 	@Override

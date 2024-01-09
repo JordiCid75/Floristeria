@@ -9,8 +9,8 @@ public class FlowerShop {
 	private String nombre;
 	private double valorTotal;
 	private static FlowerShop floristeria;
-	private Stock stock;
-	private Ticket tickets;
+	private Stock stock = new Stock();
+	private Ticket tickets = new Ticket();
 
 	private FlowerShopBD fsBD = new FlowerShopBD();
 
@@ -30,10 +30,12 @@ public class FlowerShop {
 		} else {
 			this.nombre = nom;
 		}
+		
 	}
 
 	private FlowerShop(String nombre) {
 		this.nombre = nombre;
+		
 	}
 
 	public static FlowerShop crearFloristeria(String nombre) {
@@ -69,5 +71,28 @@ public class FlowerShop {
 	public void setValorTotal(double valorTotal) {
 		this.valorTotal = valorTotal;
 	}
+	
+	public void createFlower(Flower f)
+	{
+		//creacion flor
+		//añadir cantidad al stock
+		this.stock.addItem(f, 1);
+		
+	}
+	public void createDecoration(Decoration d)
+	{
+		//creacion flor
+		//añadir cantidad al stock
+		this.stock.addItem(d, 1);
+		
+	}
+	public void createTree(Tree t)
+	{
+		//creacion flor
+		//añadir cantidad al stock
+		this.stock.addItem(t, 1);
+		this.stock.guardar();
+	}
+	
 
 }

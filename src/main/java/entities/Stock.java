@@ -1,35 +1,55 @@
 package entities;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+
+import persistence.StockBD;
 
 public class Stock {
-	private ArrayList<StockItem> listaStock = new ArrayList<StockItem>();
+	// private ArrayList<StockItem> listaStock = new ArrayList<StockItem>();
+	private StockBD stBD = new StockBD();
 
-	public void addItem(StockItem element) {
-		listaStock.add(element);
+	private HashMap<Product, Integer> listaStock = new HashMap<Product, Integer>();
+
+	public Stock() {
+		// TODO Auto-generated constructor stub
+		stBD.LeerBD();
+		this.readListaStockBD();
 	}
 
-	public void addQty(Producto prod, double qty) {
-		StockItem sti = this.findStockItem(prod.getId());
-		sti.setCantidad(sti.getCantidad() + qty);
+	private void readListaStockBD() {
+		listaStock = stBD.readListaStockBD();
+	}
+	public void addItem(Product prod, int qty) {
+		listaStock.put(prod, qty);
+	}
+
+	public void addQty(Product prod, int qty) {
+
+		listaStock.merge(prod, qty, Integer::sum);
 
 	}
 
-	public void removeQty(Producto prod, double qty) {
-		StockItem sti = this.findStockItem(prod.getId());
-		if (sti.getCantidad() > qty) {
-			sti.setCantidad(sti.getCantidad() - qty);
-		} else {
-			sti.setCantidad(0);
-		}
+	public void removeQty(Product prod, int qty) {
+		listaStock.merge(prod, -qty, Integer::sum);
+		/*
+		 * StockItem sti = this.findStockItem(prod.getId()); if (sti.getCantidad() >
+		 * qty) { sti.setCantidad(sti.getCantidad() - qty); } else { sti.setCantidad(0);
+		 * }
+		 */
+
 	}
 
-	public StockItem findStockItem(int prodId) {
-		for (StockItem it : listaStock) {
-			if (it.getProducto().getId() == prodId) {
-				return it;
-			}
-		}
-		return null;
+	public HashMap<Product, Integer> getListaStock() {
+		return listaStock;
 	}
+
+	public void guardar() {
+		stBD.write(this);
+	}
+
+	/*
+	 * public StockItem findStockItem(int prodId) { for (StockItem it : listaStock)
+	 * { if (it.getProducto().getId() == prodId) { return it; } } return null; }
+	 */
+
 }

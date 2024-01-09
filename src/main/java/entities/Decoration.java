@@ -1,22 +1,41 @@
 package entities;
 
-enum Material{WOOD, PLASTIC}
+import org.json.JSONObject;
 
-public class Decoration extends Product{
-    private Material material;
+public class Decoration extends Product {
+	private Material material;
 
-    public Decoration(String name, float price, int quantityByProduct, Material material) {
-        super(name, price, quantityByProduct);
-        this.material = material;
-    }
+	public Decoration(String name, float price, Material material) {
+		super(name, price);
+		this.material = material;
+		this.type = Decoration.class.toString();
+	}
 
-    @Override
-    public String toString()
-    {
-        return "Id: " + id + "\n" +
-                "Name: " + name + "\n" +
-                "Price: " + price + "\n" +
-                "Material: " + material.name() + "\n" +
-                "Quantity: " + quantityByProduct + "\n";
-    }
+	public Decoration(int _id, String name, float price, Material material) {
+		super(_id);
+		this.setName(name);
+		this.setPrice(price);
+		this.material = material;
+		this.type = Decoration.class.toString();
+	}
+
+	public Material getMaterial() {
+		return material;
+	}
+
+	public void setMaterial(Material material) {
+		this.material = material;
+	}
+
+	@Override
+	public String toString() {
+		return "Decoration [material=" + material + ", price=" + price + ", name=" + name + ", id=" + id + "]";
+	}
+
+	@Override
+	public JSONObject getJSONFormat() {
+		JSONObject jsonProd = super.getJSONFormat();
+		jsonProd.put("Material", this.getMaterial());
+		return jsonProd;
+	}
 }

@@ -4,11 +4,14 @@ import java.util.Scanner;
 
 import GUI.FlowerShopUI;
 import GUI.Menu;
+import entities.Decoration;
+import entities.Flower;
 import entities.FlowerShop;
-import entities.Producto;
+import entities.Material;
+import entities.Product;
 import entities.SelectorGeneric;
 import entities.Stock;
-import entities.StockItem;
+import entities.Tree;
 import exceptions.FlowerShopDoesNotExistException;
 
 public class App {
@@ -22,21 +25,9 @@ public class App {
 		// lo que hay que ver es si se pueden hacer lecturas parciales para que sea
 		// efectivo en caso de tener muchos productos
 
-		Stock st = new Stock();
-		Producto p = new Producto(1);
-		StockItem sti = new StockItem(p, 0);
-		st.addItem(sti);
-		System.out.println(st.findStockItem(1).toString());
-		st.addQty(p, 3);
-		System.out.println(st.findStockItem(1).toString());
-		st.addQty(p, 2);
-		System.out.println(st.findStockItem(1).toString());
-		st.removeQty(p, 2);
-		System.out.println(st.findStockItem(1).toString());
-		st.removeQty(p, 2);
-		System.out.println(st.findStockItem(1).toString());
-		st.removeQty(p, 2);
-		System.out.println(st.findStockItem(1).toString());
+		
+		
+
 		Menu m = new Menu();
 		SelectorGeneric sel = new SelectorGeneric();
 		int opcion = 1;

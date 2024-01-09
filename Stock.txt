@@ -1,0 +1,46 @@
+{"class entities.Stock":
+[
+	{
+	"Qty":1,
+	"StockItem":
+		{
+		"Product":
+			{
+			"Tipo":"class entities.Decoration",
+			"Price":10,
+			"Material":"WOOD",
+			"Id":2,
+			"Name":"deco1"
+			}
+		}
+	},
+	{
+	"Qty":1,
+	"StockItem":
+		{
+		"Product":
+			{
+			"Tipo":"class entities.Tree",
+			"Price":16,
+			"Height":45,
+			"Id":3,
+			"Name":"Tree1"
+			}
+		}
+	},
+	{
+	"Qty":1,
+	"StockItem":
+		{
+		"Product":
+			{
+			"Tipo":"class entities.Flower",
+			"Price":12,
+			"Id":1,
+			"Name":"flor1",
+			"Colour":"amarillo"
+			}
+		}
+	}
+]
+}

@@ -1,38 +1,49 @@
 package entities;
 
+import java.util.Collection;
+
+import org.json.JSONObject;
+
 public abstract class Product {
 
-	protected float price;
+	protected double price;
 	protected String name;
-//    private static int quantity;
-//    protected int quantityByProduct;
 	protected int id;
 	private static int contador = 1;
+	protected String type;
 
 	public Product(int _id) {
 		this.setId(_id);
 	}
 
-	public Product(String name, float price) // , int quantityByProduct )
-	{
+	public Product(String name, double price) {
 		this.name = name;
 		this.price = price;
 		this.setId(contador++);
-//        this.quantityByProduct = quantityByProduct;
-//        quantity++;
-//        id = quantity;
 	}
 
-	public float getPrice() {
+	public String getTipo() {
+		return type;
+	}
+
+	public void setTipo(String tipo) {
+		this.type = tipo;
+	}
+
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(float price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 
 	public String getName() {
 		return name;
+	}
+
+	public int getId() {
+		return id;
 	}
 
 	public void setName(String name) {
@@ -47,9 +58,14 @@ public abstract class Product {
 
 	}
 
-/*	public float calculateTotalPrice() {
-		return price * quantityByProduct;
+	public JSONObject getJSONFormat() {
+		// TODO Auto-generated method stub
+		JSONObject prd = new JSONObject();
+		prd.put("Id", this.getId());
+		prd.put("Name", this.getName());
+		prd.put("Tipo", this.getTipo());
+		prd.put("Price", this.getPrice());
+		return prd;
 	}
-*/
-	
+
 }
