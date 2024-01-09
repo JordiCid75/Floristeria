@@ -1,12 +1,10 @@
 package entities;
 
-enum Material{WOOD, PLASTIC}
-
 public class Decoration extends Product{
     private Material material;
 
-    public Decoration(String name, float price, int quantityByProduct, Material material) {
-        super(name, price, quantityByProduct);
+    public Decoration(String name, float price, Material material) {
+        super(name, price);
         this.material = material;
     }
 
@@ -15,8 +13,9 @@ public class Decoration extends Product{
     {
         return "Id: " + id + "\n" +
                 "Name: " + name + "\n" +
-                "Price: " + price + "\n" +
-                "Material: " + material.name() + "\n" +
-                "Quantity: " + quantityByProduct + "\n";
+                "Type: Decoration" + "\n" +
+                "Price: " + price + "€\n" +
+                "Material: " + material.name() + "\n";
+
     }
 }

@@ -1,35 +1,90 @@
 package entities;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Optional;
+
+
+import entities.Product;
+import exceptions.ProductNotFoundException;
+
 
 public class Stock {
-	private ArrayList<StockItem> listaStock = new ArrayList<StockItem>();
 
-	public void addItem(StockItem element) {
-		listaStock.add(element);
-	}
+    private HashMap<Product, Integer> productList;
+    private double totalValue;
 
-	public void addQty(Producto prod, double qty) {
-		StockItem sti = this.findStockItem(prod.getId());
-		sti.setCantidad(sti.getCantidad() + qty);
+    public Stock()
+    {
+        productList = new HashMap<>();
+        totalValue = 0;
 
-	}
+    }
 
-	public void removeQty(Producto prod, double qty) {
-		StockItem sti = this.findStockItem(prod.getId());
-		if (sti.getCantidad() > qty) {
-			sti.setCantidad(sti.getCantidad() - qty);
-		} else {
-			sti.setCantidad(0);
-		}
-	}
 
-	public StockItem findStockItem(int prodId) {
-		for (StockItem it : listaStock) {
-			if (it.getProducto().getId() == prodId) {
-				return it;
-			}
-		}
-		return null;
-	}
+    public void addProduct(Product product, int quantity)
+    {
+
+        productList.put(product , quantity);
+
+        totalValue += product.getPrice()*quantity;
+
+    }
+
+    public void increaseProductQuantity(Product product, int quantity)
+    {
+        productList.merge(product, quantity, Integer::sum);
+
+        totalValue += product.getPrice()*quantity;
+
+    }
+
+    public void DecreaseProductQuantity(Product product, int quantity)
+    {
+        productList.merge(product, -quantity, Integer::sum);
+
+        totalValue -= product.getPrice()*quantity;
+
+    }
+
+    public void removeProduct(Product product)
+    {
+        int quantity = productList.get(product);
+
+        totalValue -= product.getPrice()*quantity;
+
+        productList.remove(product);
+
+
+    }
+
+    public Product findProductById(int id) throws ProductNotFoundException {
+
+        List<Product> list = new ArrayList<>(productList.keySet());
+
+        Optional<Product> foundProduct = list.stream().filter(product -> product.getId() == id).findFirst();
+
+       if(foundProduct.isPresent())
+       {
+           return foundProduct.get();
+
+       }
+       else {
+
+           throw new ProductNotFoundException("Product not found in stock");
+       }
+
+    }
+
+    public double getTotalValue() {
+        return totalValue;
+    }
+
+    public HashMap<Product, Integer> getProductList() {
+        return productList;
+    }
+
+
+
 }
