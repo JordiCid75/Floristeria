@@ -1,6 +1,7 @@
 package entities;
 
-import Persistence.DataBase;
+import Persistence.*;
+
 import exceptions.ProductNotFoundException;
 
 import java.util.ArrayList;
@@ -20,14 +21,42 @@ public class FlowerShop {
 
     public static FlowerShop getInstance() {
         if (instance == null) {
-            String name = Reader.askString("Introduce the name of the flower shop");
+        	String name;
+    		name = getNameFromBD();
+        	if (name == null) {
+        		name = Reader.askString("Introduce the name of the flower shop");
+        	}
             instance = new FlowerShop(name);
+    		saveNameToBD();
             instance.initializeStock();
         }
         return instance;
     }
 
-    public void showCatalog() {
+    private static void saveNameToBD() {
+		try {
+			FlowerShopBD fsBD = new FlowerShopBD();
+			fsBD.write(instance);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+		
+	}
+
+	private static String getNameFromBD() {
+		try {
+			FlowerShopBD fsBD = new FlowerShopBD();
+			return fsBD.getShopName();
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+			return null;
+		}
+		
+	}
+
+	public void showCatalog() {
         List<Product> productList = new ArrayList<>(stock.getProductList().keySet());
         productList.forEach(System.out::println);
     }
