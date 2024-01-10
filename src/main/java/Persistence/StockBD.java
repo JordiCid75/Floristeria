@@ -44,7 +44,7 @@ public class StockBD {
 			JsonNode stiN = itemst.get("StockItem");
 			for (JsonNode item : stiN) {
 
-				String tipo = item.get("Tipo").asText();
+				String type = item.get("Type").asText();
 //				if (tipo.equals(Flower.class.toString())) {
 //					Flower fl = new Flower(item.get("Id").asInt(), item.get("Name").asText(),
 //							item.get("Price").asDouble(), item.get("Colour").asText());
@@ -87,6 +87,7 @@ public class StockBD {
 
 	private JSONObject getJSONFormat(Product p) {
 		JSONObject obj = new JSONObject();
+		obj.put("Type", p.getClass().toString());
 		obj.put("Id", p.getId());
 		obj.put("Name", p.getName());
 		obj.put("Price", p.getPrice());

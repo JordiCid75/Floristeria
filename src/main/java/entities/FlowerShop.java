@@ -150,4 +150,18 @@ public class FlowerShop {
     public Stock getStock() {
         return stock;
     }
+    public void finalize() {
+    	saveNameToBD();
+    	saveStockToBD();
+    	saveTicketHistoryToBD();
+    }
+
+	private void saveTicketHistoryToBD() {
+		
+	}
+
+	private void saveStockToBD() {
+		StockBD stBD = new StockBD();
+		stBD.write(stock);
+	}
 }

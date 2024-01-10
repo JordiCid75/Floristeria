@@ -58,5 +58,6 @@ public class App {
                 System.out.println(e.getMessage());
             }
         } while (!quit);
+        flowerShop.finalize();
     }
 }
