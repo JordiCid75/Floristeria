@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f9f2bcda-d78d-4701-b636-374ee4e073b9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/App/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/App/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Persistence/DataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Persistence/DataBase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/entities/FlowerShop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/FlowerShop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Ticket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entities/TicketHistory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/TicketHistory.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +27,9 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
@@ -47,7 +45,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;develop__enric&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Documentos/CURS_JAVA&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/enriq/Kata&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -83,7 +81,14 @@
       <workItem from="1704796753730" duration="81000" />
       <workItem from="1704796869912" duration="1032000" />
       <workItem from="1704797966932" duration="209000" />
-      <workItem from="1704798281413" duration="1076000" />
+      <workItem from="1704798281413" duration="4836000" />
+      <workItem from="1704803495420" duration="103000" />
+      <workItem from="1704803621102" duration="148000" />
+      <workItem from="1704803824244" duration="1453000" />
+      <workItem from="1704877874309" duration="1383000" />
+      <workItem from="1704879281576" duration="4975000" />
+      <workItem from="1704910297348" duration="14689000" />
+      <workItem from="1704965294611" duration="5227000" />
     </task>
     <servers />
   </component>
@@ -100,16 +105,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/entities/Ticket.java</url>
-          <line>31</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
