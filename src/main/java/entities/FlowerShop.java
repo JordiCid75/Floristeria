@@ -7,32 +7,32 @@ import exceptions.ProductNotFoundException;
 import java.util.*;
 
 public class FlowerShop {
-    private String name;
-    private static FlowerShop instance;
-    private Stock stock;
-    private TicketHistory ticketHistory;
+	private String name;
+	private static FlowerShop instance;
+	private Stock stock;
+	private TicketHistory ticketHistory;
 
-    private FlowerShop(String name) {
-        this.name = name;
-        this.stock = new Stock();
-        this.ticketHistory = new TicketHistory();
-    }
+	private FlowerShop(String name) {
+		this.name = name;
+		this.stock = new Stock();
+		this.ticketHistory = new TicketHistory();
+	}
 
-    public static FlowerShop getInstance() {
-        if (instance == null) {
-        	String name;
-    		name = getNameFromBD();
-        	if (name == null) {
-        		name = Reader.askString("Introduce the name of the flower shop");
-        	}
-            instance = new FlowerShop(name);
-    		saveNameToBD();
-            instance.initializeStock();
-        }
-        return instance;
-    }
+	public static FlowerShop getInstance() {
+		if (instance == null) {
+			String name;
+			name = getNameFromBD();
+			if (name == null) {
+				name = Reader.askString("Introduce the name of the flower shop");
+			}
+			instance = new FlowerShop(name);
+			saveNameToBD();
+			instance.initializeStock();
+		}
+		return instance;
+	}
 
-    private static void saveNameToBD() {
+	private static void saveNameToBD() {
 		try {
 			FlowerShopBD fsBD = new FlowerShopBD();
 			fsBD.write(instance);
