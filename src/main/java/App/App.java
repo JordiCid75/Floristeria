@@ -17,8 +17,8 @@ public class App {
                 int option;
                 option = Reader.askInt("0. Quit \n" +
                         "1. Add products to stock \n" +
-                        "2. Print stock \n" +
-                        "3. Remove product \n" +
+                        "2. Remove product \n" +
+                        "3. Print stock \n" +
                         "4. Print stock with quantities \n" +
                         "5. Print FlowerShop's total value \n" +
                         "6. Create tickets \n" +
@@ -32,10 +32,10 @@ public class App {
                         flowerShop.addOrIncrementProductStock();
                         break;
                     case 2:
-                        flowerShop.showCatalog();
+                        flowerShop.removeProductStock();
                         break;
                     case 3:
-                        flowerShop.removeProductStock();
+                        flowerShop.showCatalog();
                         break;
                     case 4:
                         flowerShop.showCatalogWithQuantities();
@@ -44,10 +44,15 @@ public class App {
                         flowerShop.printTotalValue();
                         break;
                     case 6:
+                        flowerShop.addNewTicket();
                         break;
                     case 7:
+                        //per fer proves
+                        flowerShop.addProductStock();
                         break;
                     case 8:
+                        //per fer proves
+                        flowerShop.incrementProductStock2();
                         break;
                     default:
                         System.out.println("This is not a valid option");
