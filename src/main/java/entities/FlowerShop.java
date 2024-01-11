@@ -182,7 +182,7 @@ public class FlowerShop {
         stock.addProduct(new Decoration("Table", 100, Material.WOOD), 30);
         stock.addProduct(new Decoration("Statue", 60, Material.PLASTIC), 70);
         stock.addProduct(new Decoration("Painting", 40, Material.WOOD), 50);
-
+    }
     public void addNewTicket() throws ProductNotFoundException {
         Ticket newTicket = new Ticket();
         showCatalogWithQuantities();
