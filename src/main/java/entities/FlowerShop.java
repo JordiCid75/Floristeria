@@ -189,7 +189,10 @@ public class FlowerShop {
 
 	public void initializeStock()
 	{
+		StockBD stBD = new StockBD();
+		stBD.readListStockBD(stock);
 
+		
 		stock.addProduct(new Flower("Daisy", 0.05F, "White"), 50);
 		stock.addProduct(new Flower("Rose", 0.02F, "Red"), 85);
 		stock.addProduct(new Flower("Sunflower", 0.01F, "Yellow"), 100);
