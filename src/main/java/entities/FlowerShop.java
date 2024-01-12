@@ -1,11 +1,11 @@
 package entities;
 
+import Persistence.*;
+
 import Factory.*;
 import exceptions.ProductNotFoundException;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import java.util.*;
 
 public class FlowerShop {
 
@@ -20,22 +20,48 @@ public class FlowerShop {
 		this.ticketHistory = new TicketHistory();
 	}
 
-
 	public static FlowerShop getInstance() {
 		if (instance == null) {
-			String name = Reader.askString("Introduce the name of the flower shop");
+			String name;
+			name = getNameFromBD();
+			if (name == null) {
+				name = Reader.askString("Introduce the name of the flower shop");
+			}
 			instance = new FlowerShop(name);
+			saveNameToBD();
 			instance.initializeStock();
 		}
 		return instance;
 	}
 
-	public void showCatalog()
-	{
-		List<Product> productList = new ArrayList<>(stock.getProductList().keySet());
+	private static void saveNameToBD() {
+		try {
+			FlowerShopBD fsBD = new FlowerShopBD();
+			fsBD.write(instance);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
 
-		productList.forEach(System.out::println);
 	}
+
+	private static String getNameFromBD() {
+		try {
+			FlowerShopBD fsBD = new FlowerShopBD();
+			return fsBD.getShopName();
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+			return null;
+		}
+
+	}
+
+	public void showCatalog() {
+        List<Product> productList = new ArrayList<>(stock.getProductList().keySet());
+        productList.sort(Comparator.comparingInt(Product::getId));
+        productList.forEach(System.out::println);
+    }
 
 	public void showCatalogWithQuantities()
 	{
@@ -90,8 +116,8 @@ public class FlowerShop {
 
 		int quantity = Reader.askInt("Introduce its quantity");
 
-		stock.addProduct(product, quantity);
-
+        Command addCommand = new AddProductInStockCommand(stock, product, quantity);
+        stock.executeCommand(addCommand);
 	}
 
 	private void incrementProductStock() throws ProductNotFoundException {
@@ -101,11 +127,12 @@ public class FlowerShop {
 		Product product = stock.findProductById(id);
 
 		int quantity = Reader.askInt("Introduce the quantity you want to add");
+        Command increaseCommand = new IncreaseProductQuantityCommand(stock, product, quantity);
+        stock.executeCommand(increaseCommand);
 
-		stock.increaseProductQuantity(product, quantity);
 
 
-	}
+    }
 
 	public void addOrIncrementProductStock() throws ProductNotFoundException {
 		int option = Reader.askInt("Choose an option: \n" +
@@ -177,7 +204,37 @@ public class FlowerShop {
 	}
 
 
-	public Stock getStock() {
-		return stock;
+    public void addNewTicket() throws ProductNotFoundException {
+        Ticket newTicket = new Ticket();
+        showCatalogWithQuantities();
+        int id = Reader.askInt("Introduce id of product you want to buy");
+        Product product = stock.findProductById(id);
+        int qtyBuy = Reader.askInt("Introduce amount");
+        int qtyNow = stock.getProductQuantity(product);
+        if (qtyBuy > qtyNow) {
+            System.out.println("Only " + qtyNow + " available.");
+        } else {
+            stock.decreaseProductQuantity(product, qtyBuy);
+        }
+        newTicket.addProductInTicket(product, qtyBuy);
+        newTicket.printTicket();
+    }
+
+    public Stock getStock() {
+        return stock;
+    }
+    public void saveInfoToBD() {
+    	saveNameToBD();
+    	saveStockToBD();
+    	saveTicketHistoryToBD();
+    }
+
+	private void saveTicketHistoryToBD() {
+
+	}
+
+	private void saveStockToBD() {
+		StockBD stBD = new StockBD();
+		stBD.write(stock);
 	}
 }
