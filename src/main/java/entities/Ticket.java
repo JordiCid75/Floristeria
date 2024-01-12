@@ -1,5 +1,7 @@
 package entities;
 
+import Factory.Product;
+
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Iterator;

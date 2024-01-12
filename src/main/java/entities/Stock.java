@@ -5,14 +5,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
-import entities.Product;
+
+import Factory.Product;
 import exceptions.ProductNotFoundException;
 
 public class Stock {
+
     private HashMap<Product, Integer> productList;
     private double totalValue;
 
-    public Stock() {
+    public Stock()
+    {
         productList = new HashMap<>();
         totalValue = 0;
     }

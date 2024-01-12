@@ -48,11 +48,11 @@ public class App {
                         break;
                     case 7:
                         //per fer proves
-                        flowerShop.addProductStock();
+
                         break;
                     case 8:
                         //per fer proves
-                        flowerShop.incrementProductStock2();
+
                         break;
                     default:
                         System.out.println("This is not a valid option");
