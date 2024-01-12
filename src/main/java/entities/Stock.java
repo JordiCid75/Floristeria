@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-import entities.Product;
+import Factory.Product;
 import exceptions.ProductNotFoundException;
 
 

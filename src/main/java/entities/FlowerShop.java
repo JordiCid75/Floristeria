@@ -1,6 +1,6 @@
 package entities;
 
-import Persistence.DataBase;
+import Factory.*;
 import exceptions.ProductNotFoundException;
 
 import java.util.ArrayList;
@@ -45,37 +45,40 @@ public class FlowerShop {
 	}
     private void addNewProductStock()
 	{
+		String productTypeString = Reader.askString("Introduce its type (Flower, Tree, Decoration)").toUpperCase();
+		ProductType productType = Enum.valueOf(ProductType.class, productTypeString);
+
 		String name = Reader.askString("Introduce its name");
 		float price = Reader.askFloat("Introduce its price per unit");
-		String type = Reader.askString("Introduce its type (Flower, Tree, Decoration)").toUpperCase();
 
-		Product newProduct = null;
 
-		switch(type)
+		ProductFactory productFactory = new ProductFactory();
+		Product product = null;
+
+		switch(productType)
 		{
-			case "FLOWER":
+			case FLOWER:
 
 				String colour = Reader.askString("Introduce its colour");
 
-				newProduct = new Flower(name, price, colour);
+				product = productFactory.create(name, price, colour);
 
 				break;
 
-			case "TREE":
+			case TREE:
 
 				float height = Reader.askFloat("Introduce its height");
 
-				newProduct = new Tree(name, price, height);
+				product = productFactory.create(name, price, height);
 
 				break;
 
-			case "DECORATION":
+			case DECORATION:
 
 				String materialString = Reader.askString("Introduce its material").toUpperCase();
-
 				Material material = Enum.valueOf(Material.class, materialString);
 
-				newProduct  = new Decoration(name, price, material);
+				product = productFactory.create(name, price, material);
 
 				break;
 
@@ -87,7 +90,8 @@ public class FlowerShop {
 
 		int quantity = Reader.askInt("Introduce its quantity");
 
-		stock.addProduct(newProduct,quantity);
+		stock.addProduct(product, quantity);
+
 	}
 
 	private void incrementProductStock() throws ProductNotFoundException {
@@ -158,6 +162,7 @@ public class FlowerShop {
 
 	public void initializeStock()
 	{
+
 		stock.addProduct(new Flower("Daisy", 0.05F, "White"), 50);
 		stock.addProduct(new Flower("Rose", 0.02F, "Red"), 85);
 		stock.addProduct(new Flower("Sunflower", 0.01F, "Yellow"), 100);

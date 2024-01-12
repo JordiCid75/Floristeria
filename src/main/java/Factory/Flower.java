@@ -1,4 +1,8 @@
-package entities;
+package Factory;
+
+import Factory.Product;
+import entities.Reader;
+import entities.Stock;
 
 public class Flower extends Product {
 
@@ -19,4 +23,6 @@ public class Flower extends Product {
 				"Price: " + price + "€\n" +
 				"Colour: " + colour + "\n";
 	}
+
+
 }

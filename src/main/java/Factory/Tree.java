@@ -1,6 +1,10 @@
-package entities;
+package Factory;
 
-public class Tree extends Product{
+import Factory.Product;
+import entities.Reader;
+import entities.Stock;
+
+public class Tree extends Product {
 
     private float height;
     public Tree(String name, float price, float height) {
@@ -18,4 +22,6 @@ public class Tree extends Product{
                 "Height: " + height + "m\n";
 
     }
+
+
 }

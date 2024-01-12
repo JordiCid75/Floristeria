@@ -1,6 +1,11 @@
-package entities;
+package Factory;
 
-public class Decoration extends Product{
+import Factory.Product;
+import entities.Material;
+import entities.Reader;
+import entities.Stock;
+
+public class Decoration extends Product {
     private Material material;
 
     public Decoration(String name, float price, Material material) {
@@ -18,4 +23,6 @@ public class Decoration extends Product{
                 "Material: " + material.name() + "\n";
 
     }
+
+
 }

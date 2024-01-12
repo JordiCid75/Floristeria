@@ -1,4 +1,7 @@
-package entities;
+package Factory;
+
+import entities.Reader;
+import entities.Stock;
 
 public abstract class Product {
 
@@ -15,6 +18,8 @@ public abstract class Product {
 		this.setId(counter++);
 
 	}
+
+
 
 	public int getId() {
 		return id;
