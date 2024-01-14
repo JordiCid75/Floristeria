@@ -4,9 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TicketHistory {
-    private HashMap<Ticket, Integer> ticketsInHistory;
+    private HashMap<Ticket, Float> ticketsInHistory;
 
-    public void addTicketToHistory(Ticket ticket, int prize) {
+    public void addTicketToHistory(Ticket ticket, float prize) {
         ticketsInHistory.put(ticket, prize);
     }
 
@@ -15,10 +15,18 @@ public class TicketHistory {
     }
 
 
-    public int totalSells() {
-        int suma = 0;
+    public HashMap<Ticket, Float> getTicketsInHistory() {
+		return ticketsInHistory;
+	}
+
+	public void setTicketsInHistory(HashMap<Ticket, Float> ticketsInHistory) {
+		this.ticketsInHistory = ticketsInHistory;
+	}
+
+	public float totalSells() {
+        float suma = 0;
         // Iterar sobre las entradas del mapa
-        for (Map.Entry<Ticket, Integer> entry : ticketsInHistory.entrySet()) {
+        for (Map.Entry<Ticket, Float> entry : ticketsInHistory.entrySet()) {
             // Sumar el valor actual al resultado
             suma += entry.getValue();
         }
@@ -30,9 +38,9 @@ public class TicketHistory {
     }
 
     public void printAllTickets() {
-        for (Map.Entry<Ticket, Integer> entry : ticketsInHistory.entrySet()) {
+        for (Map.Entry<Ticket, Float> entry : ticketsInHistory.entrySet()) {
             Ticket ticket = entry.getKey();
-            Integer prize = entry.getValue();
+            Float prize = entry.getValue();
             System.out.println("Ticket: " + ticket + ", TOTAL: " + prize);
         }
     }
