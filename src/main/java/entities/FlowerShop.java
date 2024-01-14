@@ -191,19 +191,20 @@ public class FlowerShop {
 	{
 		StockBD stBD = new StockBD();
 		stBD.readListStockBD(stock);
-
+		TicketHistoryBD thBD = new TicketHistoryBD();
+		thBD.readListTicketHistoryBD(ticketHistory, stock);
 		
-		stock.addProduct(new Flower("Daisy", 0.05F, "White"), 50);
-		stock.addProduct(new Flower("Rose", 0.02F, "Red"), 85);
-		stock.addProduct(new Flower("Sunflower", 0.01F, "Yellow"), 100);
-
-		stock.addProduct(new Tree("Aleppo pine", 50, 20), 30);
-		stock.addProduct(new Tree("Pedunculate oak", 60, 40), 15);
-		stock.addProduct(new Tree("European beech", 80, 50), 10);
-
-		stock.addProduct(new Decoration("Table", 100, Material.WOOD), 30);
-		stock.addProduct(new Decoration("Statue", 60, Material.PLASTIC), 70);
-		stock.addProduct(new Decoration("Painting", 40, Material.WOOD), 50);
+//		stock.addProduct(new Flower("Daisy", 0.05F, "White"), 50);
+//		stock.addProduct(new Flower("Rose", 0.02F, "Red"), 85);
+//		stock.addProduct(new Flower("Sunflower", 0.01F, "Yellow"), 100);
+//
+//		stock.addProduct(new Tree("Aleppo pine", 50, 20), 30);
+//		stock.addProduct(new Tree("Pedunculate oak", 60, 40), 15);
+//		stock.addProduct(new Tree("European beech", 80, 50), 10);
+//
+//		stock.addProduct(new Decoration("Table", 100, Material.WOOD), 30);
+//		stock.addProduct(new Decoration("Statue", 60, Material.PLASTIC), 70);
+//		stock.addProduct(new Decoration("Painting", 40, Material.WOOD), 50);
 	}
 
 
@@ -221,6 +222,7 @@ public class FlowerShop {
         }
         newTicket.addProductInTicket(product, qtyBuy);
         newTicket.printTicket();
+        ticketHistory.addTicketToHistory(newTicket, newTicket.getTotalPrice());
     }
 
     public Stock getStock() {
@@ -233,6 +235,8 @@ public class FlowerShop {
     }
 
 	private void saveTicketHistoryToBD() {
+		TicketHistoryBD thBD = new TicketHistoryBD();
+		thBD.write(ticketHistory);
 
 	}
 
