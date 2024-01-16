@@ -196,6 +196,8 @@ public class FlowerShop {
             stock.decreaseProductQuantity(product, qtyBuy);
         }
         newTicket.addProductInTicket(product, qtyBuy);
+
+
         newTicket.printTicket();
     }
 
