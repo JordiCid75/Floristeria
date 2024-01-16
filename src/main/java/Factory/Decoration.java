@@ -1,7 +1,12 @@
-package entities;
+package Factory;
+
+import Factory.Product;
+import entities.Material;
+import entities.Reader;
+import entities.Stock;
 
 public class Decoration extends Product {
-	private Material material;
+    private Material material;
 
 	public Decoration(String name, float price, Material material) {
 		super(name, price);

@@ -48,21 +48,21 @@ public class App {
                         break;
                     case 7:
                         //per fer proves
-                        flowerShop.addProductStock();
+
                         break;
                     case 8:
                         //per fer proves
-                        flowerShop.incrementProductStock2();
+
                         break;
                     default:
                         System.out.println("This is not a valid option");
                 }
-            } catch (NoSuchElementException e) {
-                System.out.println("No such element");
+            } catch (InputMismatchException e) {
+                System.out.println("This is not a valid character");
             } catch (ProductNotFoundException e) {
                 System.out.println(e.getMessage());
             }
         } while (!quit);
-        flowerShop.finalize();
+        flowerShop.saveInfoToBD();
     }
 }

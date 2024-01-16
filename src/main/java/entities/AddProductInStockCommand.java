@@ -1,5 +1,7 @@
 package entities;
 
+import Factory.Product;
+
 public class AddProductInStockCommand implements Command {
     private Stock stock;
     private Product product;
