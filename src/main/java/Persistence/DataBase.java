@@ -12,7 +12,7 @@ public class DataBase {
 	private ObjectMapper objectMapper;
 	private File file;
 
-	private final String filePath = "src/main/resources/FlowerShop.json";
+	private final String filePath = "src/main/Resources/FlowerShop.json";
 
 	public DataBase() {
 		objectMapper = new ObjectMapper();

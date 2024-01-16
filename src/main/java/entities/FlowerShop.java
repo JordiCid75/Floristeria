@@ -65,9 +65,11 @@ public class FlowerShop {
 
 	public void showCatalogWithQuantities()
 	{
-		stock.getProductList().forEach((k,v) -> {
-			System.out.println(k + "Quantity: " + v + "\n");
-		});
+		List<Product> productList = new ArrayList<>(stock.getProductList().keySet());
+		productList.sort(Comparator.comparingInt(Product::getId));
+
+		productList.forEach(product -> System.out.println(product + "Quantity: " + stock.getProductList().get(product) + "\n"));
+
 	}
     private void addNewProductStock()
 	{
@@ -183,7 +185,7 @@ public class FlowerShop {
 
 	public void printTotalValue()
 	{
-		System.out.println(stock.getTotalValue() + "€");
+		System.out.printf("%.2f€\n", stock.getTotalValue());
 	}
 
 

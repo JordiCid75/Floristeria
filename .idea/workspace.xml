@@ -5,7 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f9f2bcda-d78d-4701-b636-374ee4e073b9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_01_2024_13_57__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_01_2024_13_57__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_01_2024_13_57__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_01_2024_13_57__Changes_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Resources/Stock.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Resources/Stock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Resources/TicketHistory.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Resources/TicketHistory.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/App/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/App/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Persistence/DataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Persistence/DataBase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/entities/FlowerShop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/FlowerShop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Reader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Reader.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,8 +54,8 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;develop__enric&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/enriq/Kata&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;develop__Marc&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Usuari/IdeaProjects/Sprint3/Floristeria&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,

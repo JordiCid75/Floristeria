@@ -57,8 +57,8 @@ public class App {
                     default:
                         System.out.println("This is not a valid option");
                 }
-            } catch (NoSuchElementException e) {
-                System.out.println("No such element");
+            } catch (InputMismatchException e) {
+                System.out.println("This is not a valid character");
             } catch (ProductNotFoundException e) {
                 System.out.println(e.getMessage());
             }

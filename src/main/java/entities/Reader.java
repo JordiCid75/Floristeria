@@ -1,5 +1,6 @@
 package entities;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Reader {
@@ -15,7 +16,7 @@ public class Reader {
         return input;
     }
 
-    public static int askInt(String message)
+    public static int askInt(String message) throws InputMismatchException
     {
         Scanner scanner = new Scanner(System.in);
 
