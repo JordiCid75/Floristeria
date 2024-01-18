@@ -18,46 +18,57 @@ public class FlowerShop {
         this.ticketHistory = new TicketHistory();
     }
 
-    public static FlowerShop getInstance() {
-        if (instance == null) {
-            String name;
-            name = getNameFromBD();
-            if (name == null) {
-                name = Reader.askString("Introduce the name of the flower shop");
-            }
-            instance = new FlowerShop(name);
-            saveNameToBD();
-            instance.initializeStock();
-        }
-        return instance;
-    }
 
-    private static void saveNameToBD() {
-        try {
-            FlowerShopBD fsBD = new FlowerShopBD();
-            fsBD.write(instance);
-        } catch (Exception e) {
-            // TODO: handle exception
-            System.out.println(e.getMessage());
-        }
-    }
+	public void showCatalogWithQuantities()
+	{
+		List<Product> productList = new ArrayList<>(stock.getProductList().keySet());
+		productList.sort(Comparator.comparingInt(Product::getId));
 
-    private static String getNameFromBD() {
-        try {
-            FlowerShopBD fsBD = new FlowerShopBD();
-            return fsBD.getShopName();
-        } catch (Exception e) {
-            // TODO: handle exception
-            System.out.println(e.getMessage());
-            return null;
-        }
-    }
+		productList.forEach(product -> System.out.println(product + "Quantity: " + stock.getProductList().get(product) + "\n"));
 
-    public void showCatalog() {
-        List<Product> productList = new ArrayList<>(stock.getProductList().keySet());
-        productList.sort(Comparator.comparingInt(Product::getId));
-        productList.forEach(System.out::println);
-    }
+	}
+    private void addNewProductStock() throws IllegalArgumentException {
+
+		String productTypeString = Reader.askString("Introduce its type (Flower, Tree, Decoration)").toUpperCase();
+
+
+		ProductType productType = Enum.valueOf(ProductType.class, productTypeString);
+
+		String name = Reader.askString("Introduce its name");
+		float price = Reader.askFloat("Introduce its price per unit");
+
+
+		ProductFactory productFactory = new ProductFactory();
+		Product product = null;
+
+		switch(productType)
+		{
+			case FLOWER:
+
+				String colour = Reader.askString("Introduce its colour");
+
+				product = productFactory.create(name, price, colour);
+
+				break;
+
+			case TREE:
+
+				float height = Reader.askFloat("Introduce its height");
+
+				product = productFactory.create(name, price, height);
+
+				break;
+
+			case DECORATION:
+
+				String materialString = Reader.askString("Introduce its material").toUpperCase();
+				Material material = Enum.valueOf(Material.class, materialString);
+
+				product = productFactory.create(name, price, material);
+
+				break;
+
+		}
 
     public void showCatalogWithQuantities() {
         List<Product> productList = new ArrayList<>(stock.getProductList().keySet());
@@ -208,6 +219,16 @@ public class FlowerShop {
             }
         } while (!salir);
     }
+
+	public void printTotalGains()
+	{
+		System.out.printf("%.2f€\n", ticketHistory.totalSells());
+	}
+
+	public void printOldPurchases()
+	{
+		ticketHistory.printAllTickets();
+	}
 
     public Stock getStock() {
         return stock;

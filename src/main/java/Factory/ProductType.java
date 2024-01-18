@@ -1,3 +1,6 @@
 package Factory;
 
-public enum ProductType {TREE, FLOWER, DECORATION}
+public enum ProductType {
+    TREE, FLOWER, DECORATION
+
+}
