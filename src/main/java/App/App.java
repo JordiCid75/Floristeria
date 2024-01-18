@@ -1,15 +1,13 @@
 package App;
 
-import java.io.IOException;
 import java.util.*;
 
-import Persistence.DataBase;
 import entities.FlowerShop;
 import entities.Reader;
 import exceptions.ProductNotFoundException;
 
 public class App {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         boolean quit = false;
         FlowerShop flowerShop = FlowerShop.getInstance();
         do {
@@ -47,11 +45,12 @@ public class App {
                         flowerShop.addNewTicket();
                         break;
                     case 7:
-                        //per fer proves
+                        flowerShop.printOldPurchases();
 
                         break;
                     case 8:
-                        //per fer proves
+
+                        flowerShop.printTotalGains();
 
                         break;
                     default:
@@ -61,6 +60,9 @@ public class App {
                 System.out.println("This is not a valid character");
             } catch (ProductNotFoundException e) {
                 System.out.println(e.getMessage());
+            } catch(IllegalArgumentException e)
+            {
+                System.out.println("This type of product does not exist");
             }
         } while (!quit);
         flowerShop.saveInfoToBD();

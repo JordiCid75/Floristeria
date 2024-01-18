@@ -71,9 +71,11 @@ public class FlowerShop {
 		productList.forEach(product -> System.out.println(product + "Quantity: " + stock.getProductList().get(product) + "\n"));
 
 	}
-    private void addNewProductStock()
-	{
+    private void addNewProductStock() throws IllegalArgumentException {
+
 		String productTypeString = Reader.askString("Introduce its type (Flower, Tree, Decoration)").toUpperCase();
+
+
 		ProductType productType = Enum.valueOf(ProductType.class, productTypeString);
 
 		String name = Reader.askString("Introduce its name");
@@ -109,10 +111,6 @@ public class FlowerShop {
 				product = productFactory.create(name, price, material);
 
 				break;
-
-			default:
-
-				System.out.println("This is not a valid type");
 
 		}
 
@@ -226,6 +224,16 @@ public class FlowerShop {
         newTicket.printTicket();
         ticketHistory.addTicketToHistory(newTicket, newTicket.getTotalPrice());
     }
+
+	public void printTotalGains()
+	{
+		System.out.printf("%.2f€\n", ticketHistory.totalSells());
+	}
+
+	public void printOldPurchases()
+	{
+		ticketHistory.printAllTickets();
+	}
 
     public Stock getStock() {
         return stock;
