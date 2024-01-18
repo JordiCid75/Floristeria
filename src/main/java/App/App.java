@@ -46,12 +46,9 @@ public class App {
                         break;
                     case 7:
                         flowerShop.printOldPurchases();
-
                         break;
                     case 8:
-
                         flowerShop.printTotalGains();
-
                         break;
                     default:
                         System.out.println("This is not a valid option");
