@@ -18,6 +18,49 @@ public class FlowerShop {
         this.ticketHistory = new TicketHistory();
     }
 
+	public static FlowerShop getInstance() {
+		if (instance == null) {
+			String name;
+			name = getNameFromBD();
+			if (name == null) {
+				name = Reader.askString("Introduce the name of the flower shop");
+			}
+			instance = new FlowerShop(name);
+			saveNameToBD();
+			instance.initializeStock();
+		}
+		return instance;
+	}
+
+	private static void saveNameToBD() {
+		try {
+			FlowerShopBD fsBD = new FlowerShopBD();
+			fsBD.write(instance);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+
+	}
+
+	private static String getNameFromBD() {
+		try {
+			FlowerShopBD fsBD = new FlowerShopBD();
+			return fsBD.getShopName();
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+			return null;
+		}
+
+	}
+
+	public void showCatalog() {
+        List<Product> productList = new ArrayList<>(stock.getProductList().keySet());
+        productList.sort(Comparator.comparingInt(Product::getId));
+        productList.forEach(System.out::println);
+    }
+
 
 	public void showCatalogWithQuantities()
 	{
