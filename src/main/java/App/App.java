@@ -47,12 +47,10 @@ public class App {
                         flowerShop.addNewTicket();
                         break;
                     case 7:
-                        //per fer proves
-
+                        flowerShop.printTickets();
                         break;
                     case 8:
-                        //per fer proves
-
+                        flowerShop.showTotalSells();
                         break;
                     default:
                         System.out.println("This is not a valid option");
