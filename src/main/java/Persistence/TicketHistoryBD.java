@@ -13,14 +13,14 @@ import entities.*;
 import exceptions.ProductNotFoundException;
 import Factory.*;
 
-public class TicketHistoryBD {
+public class TicketHistoryBD implements IConnectionType {
 
 	private IConnection conn;
 	private final String filePath = "src/main/resources/";
 	private final String fileName = "TicketHistory.json";
 
 	public TicketHistoryBD() {
-		this.conn = FactoryBD.getConexionBD("TXT");
+		this.conn = FactoryBD.getConexionBD(connType);
 		this.conn.setNameTable(filePath + fileName);
 	}
 

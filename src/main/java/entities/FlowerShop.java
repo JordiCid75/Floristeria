@@ -9,6 +9,7 @@ import java.util.*;
 
 public class FlowerShop {
 
+
 	private String name;
 	private static FlowerShop instance;
 	private Stock stock;
@@ -80,7 +81,6 @@ public class FlowerShop {
 		float price = Reader.askFloat("Introduce its price per unit");
 
 
-		ProductFactory productFactory = new ProductFactory();
 		Product product = null;
 
 		switch(productType)
@@ -89,7 +89,7 @@ public class FlowerShop {
 
 				String colour = Reader.askString("Introduce its colour");
 
-				product = productFactory.create(name, price, colour);
+				product = ProductFactory.create(name, price, colour);
 
 				break;
 
@@ -97,7 +97,7 @@ public class FlowerShop {
 
 				float height = Reader.askFloat("Introduce its height");
 
-				product = productFactory.create(name, price, height);
+				product = ProductFactory.create(name, price, height);
 
 				break;
 
@@ -106,7 +106,7 @@ public class FlowerShop {
 				String materialString = Reader.askString("Introduce its material").toUpperCase();
 				Material material = Enum.valueOf(Material.class, materialString);
 
-				product = productFactory.create(name, price, material);
+				product = ProductFactory.create(name, price, material);
 
 				break;
 
@@ -230,13 +230,8 @@ public class FlowerShop {
     public Stock getStock() {
         return stock;
     }
-    public void saveInfoToBD() {
-    	saveNameToBD();
-    	saveStockToBD();
-    	saveTicketHistoryToBD();
-    }
 
-	private void saveTicketHistoryToBD() {
+    private void saveTicketHistoryToBD() {
 		TicketHistoryBD thBD = new TicketHistoryBD();
 		thBD.write(ticketHistory);
 
@@ -246,4 +241,11 @@ public class FlowerShop {
 		StockBD stBD = new StockBD();
 		stBD.write(stock);
 	}
+
+	public void saveInfoToBD() {
+    	saveNameToBD();
+    	saveStockToBD();
+    	saveTicketHistoryToBD();
+    }
+
 }

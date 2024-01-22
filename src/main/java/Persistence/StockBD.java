@@ -11,14 +11,14 @@ import com.fasterxml.jackson.databind.JsonNode;
 import entities.*;
 import Factory.*;
 
-public class StockBD {
+public class StockBD implements IConnectionType {
 
 	private IConnection conn;
 	private final String filePath = "src/main/resources/";
 	private final String fileName = "Stock.json";
 
 	public StockBD() {
-		this.conn = FactoryBD.getConexionBD("TXT");
+		this.conn = FactoryBD.getConexionBD(connType);
 		this.conn.setNameTable(filePath + fileName);
 	}
 

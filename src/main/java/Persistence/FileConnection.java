@@ -10,24 +10,16 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class FileConnection implements IConnection {
-	private String path;
+	private final String filePath = "src/main/resources/";
 	private String name;
 	private JsonNode content;
-
-	public String getPath() {
-		return path;
-	}
-
-	public void setPath(String path) {
-		this.path = path;
-	}
 
 	public String getName() {
 		return name;
 	}
 
 	private void setName(String name) {
-		this.name = name;
+		this.name = filePath + name;
 	}
 
 	public FileConnection() {
