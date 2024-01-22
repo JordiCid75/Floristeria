@@ -32,7 +32,6 @@ public class StockBD {
 		readBD();
 		JsonNode jsonNode;
 		jsonNode = this.conn.getContentNodes();
-
 		JsonNode st = jsonNode.get(Stock.class.toString());
 		for (JsonNode itemst : st) {
 			// primero vendrá el qty, y despues el producto en sí
