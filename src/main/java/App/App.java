@@ -11,6 +11,7 @@ public class App {
         boolean quit = false;
         FlowerShop flowerShop = FlowerShop.getInstance();
         do {
+        	flowerShop.saveInfoToBD();
             try {
                 int option;
                 option = Reader.askInt("0. Quit \n" +
