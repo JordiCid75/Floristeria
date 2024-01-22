@@ -41,7 +41,9 @@ public class TicketHistory {
         for (Map.Entry<Ticket, Float> entry : ticketsInHistory.entrySet()) {
             Ticket ticket = entry.getKey();
             Float prize = entry.getValue();
-            System.out.println("Ticket: " + ticket + ", TOTAL: " + prize);
+            System.out.println(ticket.getId());
+            ticket.printTicket();
+            System.out.println("\n");
         }
     }
 }

@@ -11,14 +11,14 @@ import com.fasterxml.jackson.databind.JsonNode;
 import entities.*;
 import Factory.*;
 
-public class StockBD implements IConnectionType {
+public class StockBD {
 
 	private IConnection conn;
 	private final String filePath = "src/main/resources/";
 	private final String fileName = "Stock.json";
 
 	public StockBD() {
-		this.conn = FactoryBD.getConexionBD(connType);
+		this.conn = FactoryBD.getConexionBD("TXT");
 		this.conn.setNameTable(filePath + fileName);
 	}
 
@@ -32,7 +32,6 @@ public class StockBD implements IConnectionType {
 		readBD();
 		JsonNode jsonNode;
 		jsonNode = this.conn.getContentNodes();
-
 		JsonNode st = jsonNode.get(Stock.class.toString());
 		for (JsonNode itemst : st) {
 			// primero vendrá el qty, y despues el producto en sí

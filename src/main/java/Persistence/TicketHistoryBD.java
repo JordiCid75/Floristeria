@@ -13,14 +13,14 @@ import entities.*;
 import exceptions.ProductNotFoundException;
 import Factory.*;
 
-public class TicketHistoryBD implements IConnectionType {
+public class TicketHistoryBD {
 
 	private IConnection conn;
 	private final String filePath = "src/main/resources/";
 	private final String fileName = "TicketHistory.json";
 
 	public TicketHistoryBD() {
-		this.conn = FactoryBD.getConexionBD(connType);
+		this.conn = FactoryBD.getConexionBD("TXT");
 		this.conn.setNameTable(filePath + fileName);
 	}
 
@@ -49,14 +49,38 @@ public class TicketHistoryBD implements IConnectionType {
 
 				int p_id = tkprd.get("Id").asInt();
 
-				// String type = prd.get("Type").asText();
 				Product p = null;
 				try {
 					p = stock.findProductById(p_id);
 				} catch (ProductNotFoundException e) {
 					e.printStackTrace();
 				}
-				p.setPrice(tkprd.get("Price").floatValue());
+				if (p.getPrice() != tkprd.get("Price").floatValue())
+				{
+					String type = p.getClass().toString();
+					if (type.equals(Flower.class.toString())) {
+						Flower fl = (Flower) p;
+						Product p_new = ProductFactory.create(fl.getName(), (float) tkprd.get("Price").asDouble(),
+								 fl.getColour());
+						p_new.setId(p_id);
+						p = p_new;
+
+					} else if (type.equals(Tree.class.toString())) {
+						Tree tr = (Tree) p;
+						Product p_new = ProductFactory.create(tr.getName(), (float) tkprd.get("Price").asDouble(),
+								tr.getHeight());
+						p_new.setId(p_id);
+						p = p_new;
+
+					} else if (type.equals(Decoration.class.toString())) {
+						Decoration dc = (Decoration) p;
+						Product p_new  = ProductFactory.create(dc.getName(), (float) tkprd.get("Price").asDouble(),
+								dc.getMaterial());
+						p_new.setId(p_id);
+						p = p_new;
+					}
+
+				}
 				if (p != null) {
 					ticket.addProductInTicket(p, tkItm.get("ProductQty").asInt());
 				}
@@ -91,18 +115,14 @@ public class TicketHistoryBD implements IConnectionType {
 
 	private JSONObject getJSONFormatTicketProduct(Product p) {
 		JSONObject obj = new JSONObject();
-		// obj.put("Type", p.getClass().toString());
 		obj.put("Id", p.getId());
-		// obj.put("Name", p.getName());
 		obj.put("Price", p.getPrice());
 		return obj;
 	}
 
 	private JSONObject getJSONFormatTicket(Ticket tk) {
 		JSONObject obj = new JSONObject();
-		// obj.put("Type", tk.getClass().toString());
 		obj.put("Id", tk.getId());
-		// obj.put("Name", p.getName());
 		obj.put("Date", tk.getDate());
 		obj.put("Price", tk.getTotalPrice());
 		return obj;
