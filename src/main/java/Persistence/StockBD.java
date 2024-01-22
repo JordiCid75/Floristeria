@@ -8,12 +8,8 @@ import org.json.JSONObject;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
-import entities.Decoration;
-import entities.Flower;
-import entities.Material;
-import entities.Product;
-import entities.Stock;
-import entities.Tree;
+import entities.*;
+import Factory.*;
 
 public class StockBD {
 
@@ -30,13 +26,12 @@ public class StockBD {
 		this.conn.getContent();
 	}
 
-	public HashMap<Product, Integer> readListStockBD() {
-		HashMap<Product, Integer> lista = new HashMap<Product, Integer>();
+	public void readListStockBD(Stock stock) {
 		// aqui leeremos todos los elementos del stock
 
+		readBD();
 		JsonNode jsonNode;
 		jsonNode = this.conn.getContentNodes();
-
 		JsonNode st = jsonNode.get(Stock.class.toString());
 		for (JsonNode itemst : st) {
 			// primero vendrá el qty, y despues el producto en sí
@@ -45,27 +40,27 @@ public class StockBD {
 			for (JsonNode item : stiN) {
 
 				String type = item.get("Type").asText();
-//				if (tipo.equals(Flower.class.toString())) {
-//					Flower fl = new Flower(item.get("Id").asInt(), item.get("Name").asText(),
-//							item.get("Price").asDouble(), item.get("Colour").asText());
-//					lista.put(fl, itemst.get("Qty").asInt());
-//
-//				} else if (tipo.equals(Tree.class.toString())) {
-//					Tree tr = new Tree(item.get("Id").asInt(), item.get("Name").asText(), item.get("Price").asDouble(),
-//							item.get("Height").asDouble());
-//					lista.put(tr, itemst.get("Qty").asInt());
-//
-//				} else if (tipo.equals(Decoration.class.toString())) {
-//					Decoration dc = new Decoration(item.get("Id").asInt(), item.get("Name").asText(),
-//							item.get("Price").asDouble(), Material.valueOf(item.get("Material").asText()));
-//					lista.put(dc, itemst.get("Qty").asInt());
-//
-//				}
+				Product p = null;
+				if (type.equals(Flower.class.toString())) {
+					p = ProductFactory.create(item.get("Name").asText(), (float) item.get("Price").asDouble(),
+							item.get("Colour").asText());
+					p.setId(item.get("Id").asInt());
+
+				} else if (type.equals(Tree.class.toString())) {
+					p = ProductFactory.create(item.get("Name").asText(), (float) item.get("Price").asDouble(),
+							(float) item.get("Height").asDouble());
+					p.setId(item.get("Id").asInt());
+
+				} else if (type.equals(Decoration.class.toString())) {
+					p = ProductFactory.create(item.get("Name").asText(), (float) item.get("Price").asDouble(),
+							Material.valueOf(item.get("Material").asText()));
+					p.setId(item.get("Id").asInt());
+				}
+				if (p != null) {
+					stock.addProduct(p, itemst.get("Qty").asInt());
+				}
 			}
 		}
-
-		return lista;
-
 	}
 
 	public void write(Stock stock) {
@@ -91,7 +86,7 @@ public class StockBD {
 		obj.put("Id", p.getId());
 		obj.put("Name", p.getName());
 		obj.put("Price", p.getPrice());
-		
+
 		if (p.getClass().equals(Flower.class)) {
 			Flower fl = (Flower) p;
 			obj.put("Colour", fl.getColour());
@@ -104,7 +99,7 @@ public class StockBD {
 			Decoration dc = (Decoration) p;
 			obj.put("Material", dc.getMaterial());
 		}
-		
+
 		return obj;
 	}
 

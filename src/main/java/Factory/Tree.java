@@ -1,4 +1,8 @@
-package entities;
+package Factory;
+
+import Factory.Product;
+import entities.Reader;
+import entities.Stock;
 
 public class Tree extends Product {
 

@@ -1,12 +1,17 @@
-package entities;
+package Factory;
+
+import entities.Reader;
+import entities.Stock;
 
 public abstract class Product {
+
     protected float price;
     protected String name;
     protected int id;
     private static int counter = 1;
 
     public Product(String name, float price) {
+
         this.name = name;
         this.price = price;
         this.setId(counter++);

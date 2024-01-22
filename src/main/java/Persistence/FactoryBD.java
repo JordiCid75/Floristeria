@@ -7,6 +7,7 @@ public class FactoryBD {
 		case "TXT": {
 			return new FileConnection();
 		}
+		
 
 		default: {
 			throw new IllegalArgumentException("Unexpected value: " + tipo);

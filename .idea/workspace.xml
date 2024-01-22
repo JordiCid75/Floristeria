@@ -5,7 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f9f2bcda-d78d-4701-b636-374ee4e073b9" name="Changes" comment="">
+
+
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Resources/Stock.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Resources/Stock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Resources/TicketHistory.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Resources/TicketHistory.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/App/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/App/App.java" afterDir="false" />
+
+      <change beforePath="$PROJECT_DIR$/src/main/java/Factory/ProductType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Factory/ProductType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Persistence/DataBase.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/entities/FlowerShop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/FlowerShop.java" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +67,19 @@
   }
 }</component>
   <component name="RunManager">
+    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="App.App" />
+      <module name="Floristeria" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="App.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <method v="2">
         <option name="Make" enabled="true" />
@@ -68,6 +91,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.App" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -89,6 +117,7 @@
       <workItem from="1704879281576" duration="4975000" />
       <workItem from="1704910297348" duration="14689000" />
       <workItem from="1704965294611" duration="5227000" />
+      <workItem from="1705570390183" duration="10807000" />
     </task>
     <servers />
   </component>
@@ -105,5 +134,21 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/entities/FlowerShop.java</url>
+          <line>212</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/entities/FlowerShop.java</url>
+          <line>186</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

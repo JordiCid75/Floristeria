@@ -1,18 +1,17 @@
 package App;
 
-import java.io.IOException;
 import java.util.*;
 
-import Persistence.DataBase;
 import entities.FlowerShop;
 import entities.Reader;
 import exceptions.ProductNotFoundException;
 
 public class App {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         boolean quit = false;
         FlowerShop flowerShop = FlowerShop.getInstance();
         do {
+        	flowerShop.saveInfoToBD();
             try {
                 int option;
                 option = Reader.askInt("0. Quit \n" +
@@ -47,22 +46,23 @@ public class App {
                         flowerShop.addNewTicket();
                         break;
                     case 7:
-                        //per fer proves
-                        flowerShop.addProductStock();
+                        flowerShop.printOldPurchases();
                         break;
                     case 8:
-                        //per fer proves
-                        flowerShop.incrementProductStock2();
+                        flowerShop.printTotalGains();
                         break;
                     default:
                         System.out.println("This is not a valid option");
                 }
-            } catch (NoSuchElementException e) {
-                System.out.println("No such element");
+            } catch (InputMismatchException e) {
+                System.out.println("This is not a valid character");
             } catch (ProductNotFoundException e) {
                 System.out.println(e.getMessage());
+            } catch(IllegalArgumentException e)
+            {
+                System.out.println("This type of product does not exist");
             }
         } while (!quit);
-        flowerShop.finalize();
+        flowerShop.saveInfoToBD();
     }
 }

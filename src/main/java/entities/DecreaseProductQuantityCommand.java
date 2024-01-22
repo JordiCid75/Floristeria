@@ -1,5 +1,7 @@
 package entities;
 
+import Factory.Product;
+
 public class DecreaseProductQuantityCommand implements Command {
 
     private Stock stock;

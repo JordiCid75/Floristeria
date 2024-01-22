@@ -10,17 +10,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class FileConnection implements IConnection {
-	private String path;
+	private final String filePath = "src/main/resources/";
 	private String name;
 	private JsonNode content;
-
-	public String getPath() {
-		return path;
-	}
-
-	public void setPath(String path) {
-		this.path = path;
-	}
 
 	public String getName() {
 		return name;
@@ -45,13 +37,7 @@ public class FileConnection implements IConnection {
 				// Leer el archivo JSON completo como un árbol de nodos JsonNode
 				jsonNode = objectMapper.readTree(new File(name));
 
-				System.out.println("Contenido JSON completo:");
-				System.out.println(jsonNode.toPrettyString());
 				return jsonNode;
-				// También puedes convertir el JsonNode a un objeto Java si es necesario
-				// Por ejemplo, si el JSON es un objeto:
-				// MiObjeto miObjeto = objectMapper.treeToValue(jsonNode, MiObjeto.class);
-				// return null;
 			} catch (IOException e) {
 				System.out.println(e.getMessage());
 			}
