@@ -2,19 +2,14 @@ package Persistence;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
 
 import org.json.JSONObject;
-
 import com.fasterxml.jackson.databind.JsonNode;
-
 import entities.*;
 import exceptions.ProductNotFoundException;
 import Factory.*;
 
 public class TicketHistoryBD {
-
 	private IConnection conn;
 	private final String filePath = "src/main/resources/";
 	private final String fileName = "TicketHistory.json";
@@ -28,17 +23,14 @@ public class TicketHistoryBD {
 		this.conn.getContent();
 	}
 
-	public void readListTicketHistoryBD(TicketHistory ticketHistory, Stock stock) {
+	public void readListTicketHistoryBD(TicketHistory ticketHistory, Stock stock, Stock oldStock) {
 		// aqui leeremos todos los elementos del stock
-
 		readBD();
 		JsonNode jsonNode;
 		jsonNode = this.conn.getContentNodes();
-
 		JsonNode th = jsonNode.get(TicketHistory.class.toString());
 		for (JsonNode tk : th) {
 			// primero vendrá el qty, y despues el producto en sí
-
 			JsonNode itmTk = tk.get(Ticket.class.toString());
 			Ticket ticket = new Ticket();
 			ticket.setId(itmTk.get("Id").asInt());
@@ -46,43 +38,43 @@ public class TicketHistoryBD {
 			JsonNode itmsTk = tk.get("TicketItems");
 			for (JsonNode tkItm : itmsTk) {
 				JsonNode tkprd = tkItm.get("TicketProduct");
-
 				int p_id = tkprd.get("Id").asInt();
-
 				Product p = null;
 				try {
 					p = stock.findProductById(p_id);
 				} catch (ProductNotFoundException e) {
-					e.printStackTrace();
-				}
-				if (p.getPrice() != tkprd.get("Price").floatValue())
-				{
-					String type = p.getClass().toString();
-					if (type.equals(Flower.class.toString())) {
-						Flower fl = (Flower) p;
-						Product p_new = ProductFactory.create(fl.getName(), (float) tkprd.get("Price").asDouble(),
-								 fl.getColour());
-						p_new.setId(p_id);
-						p = p_new;
-
-					} else if (type.equals(Tree.class.toString())) {
-						Tree tr = (Tree) p;
-						Product p_new = ProductFactory.create(tr.getName(), (float) tkprd.get("Price").asDouble(),
-								tr.getHeight());
-						p_new.setId(p_id);
-						p = p_new;
-
-					} else if (type.equals(Decoration.class.toString())) {
-						Decoration dc = (Decoration) p;
-						Product p_new  = ProductFactory.create(dc.getName(), (float) tkprd.get("Price").asDouble(),
-								dc.getMaterial());
-						p_new.setId(p_id);
-						p = p_new;
+					try {
+						p = oldStock.findProductById(p_id);
+					} catch (ProductNotFoundException ex) {
+						ex.printStackTrace();
 					}
-
 				}
 				if (p != null) {
-					ticket.addProductInTicket(p, tkItm.get("ProductQty").asInt());
+					if (p.getPrice() != tkprd.get("Price").floatValue()) {
+						String type = p.getClass().toString();
+						if (type.equals(Flower.class.toString())) {
+							Flower fl = (Flower) p;
+							Product p_new = ProductFactory.create(fl.getName(), (float) tkprd.get("Price").asDouble(),
+									fl.getColour());
+							p_new.setId(p_id);
+							p = p_new;
+						} else if (type.equals(Tree.class.toString())) {
+							Tree tr = (Tree) p;
+							Product p_new = ProductFactory.create(tr.getName(), (float) tkprd.get("Price").asDouble(),
+									tr.getHeight());
+							p_new.setId(p_id);
+							p = p_new;
+						} else if (type.equals(Decoration.class.toString())) {
+							Decoration dc = (Decoration) p;
+							Product p_new = ProductFactory.create(dc.getName(), (float) tkprd.get("Price").asDouble(),
+									dc.getMaterial());
+							p_new.setId(p_id);
+							p = p_new;
+						}
+					}
+					if (p != null) {
+						ticket.addProductInTicket(p, tkItm.get("ProductQty").asInt());
+					}
 				}
 			}
 			ticketHistory.addTicketToHistory(ticket, (int) itmTk.get("Price").asDouble());
@@ -93,22 +85,20 @@ public class TicketHistoryBD {
 		JSONObject jsonTicketHistory = new JSONObject(); // para el ticketHistory
 		ArrayList<JSONObject> jsonTickets = new ArrayList<JSONObject>(); // los tickets en Ticket history
 		ticketHistory.getTicketsInHistory().forEach((t, ticketPrice) -> { // Cada ticket tiene el ticket y el precio
-																			// total
+			// total
 			JSONObject jsonTicket = new JSONObject(); // Ticket
 			ArrayList<JSONObject> jsonTicketLine = new ArrayList<JSONObject>(); // cada linea de tocket tiene qty,
-																				// precio, id producto y cantidad
+			// precio, id producto y cantidad
 			t.getProductsInTicket().forEach((p, pd_qty) -> {
 				JSONObject jsonTicketProduct = new JSONObject();
 				jsonTicketProduct.put("TicketProduct", getJSONFormatTicketProduct(p));
 				jsonTicketProduct.put("ProductQty", pd_qty);
 				jsonTicketLine.add(jsonTicketProduct);
 			});
-
 			jsonTicket.put(Ticket.class.toString(), getJSONFormatTicket(t));
 			jsonTicket.put("TicketItems", jsonTicketLine);
 			jsonTickets.add(jsonTicket);
 		});
-
 		jsonTicketHistory.put(TicketHistory.class.toString(), jsonTickets);
 		this.conn.write(jsonTicketHistory.toString());
 	}
@@ -127,5 +117,4 @@ public class TicketHistoryBD {
 		obj.put("Price", tk.getTotalPrice());
 		return obj;
 	}
-
 }

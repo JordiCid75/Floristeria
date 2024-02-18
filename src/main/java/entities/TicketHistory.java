@@ -1,5 +1,7 @@
 package entities;
 
+import Factory.Product;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,6 +34,17 @@ public class TicketHistory {
         }
         return suma;
     }
+
+    public boolean productInTickets(Product product){
+        for (Map.Entry<Ticket, Float> entry : ticketsInHistory.entrySet()) {
+            Ticket ticket = entry.getKey();
+            if (ticket.getProductsInTicket().containsKey(product)){
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     public void removeTicket(Ticket ticket) {
         this.ticketsInHistory.remove(ticket);
