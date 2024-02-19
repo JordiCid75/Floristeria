@@ -77,7 +77,7 @@ public class TicketHistoryBD {
 					}
 				}
 			}
-			ticketHistory.addTicketToHistory(ticket, (int) itmTk.get("Price").asDouble());
+			ticketHistory.addTicketToHistory(ticket, (float) itmTk.get("Price").asDouble());
 		}
 	}
 
