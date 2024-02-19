@@ -22,7 +22,8 @@ public class App {
                         "5. Print FlowerShop's total value \n" +
                         "6. Create tickets \n" +
                         "7. Show list of old purchases \n" +
-                        "8. Show total gains \n");
+                        "8. Show total gains \n" +
+                        "9. Show list of old products \n");
                 switch (option) {
                     case 0:
                         quit = true;
@@ -50,6 +51,9 @@ public class App {
                         break;
                     case 8:
                         flowerShop.printTotalGains();
+                        break;
+                    case 9:
+                        flowerShop.showOldCatalogWithQuantities();
                         break;
                     default:
                         System.out.println("This is not a valid option");

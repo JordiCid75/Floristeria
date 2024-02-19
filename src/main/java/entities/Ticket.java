@@ -14,7 +14,7 @@ public class Ticket {
     private int id;
     private LocalDate creationDate;
     private static int counter = 0;
-    private float totalPrice;
+    private float totalPrice = 0.00f;
 
     public Ticket() {
         productsInTicket = new HashMap<>();
@@ -99,7 +99,7 @@ public class Ticket {
             String productName = product.getName();
             int qty = getProductQuantityTicket(product);
             float productPriceSum = product.getPrice() * qty;
-            System.out.println(productName + ", Price: " + product.getPrice() + " €" +" x"+qty+" "+productPriceSum+ " €");
+            System.out.println("Id:"+product.getId()+" Name: "+ productName + ", Price: " + product.getPrice() + " €" +" x"+qty+" "+productPriceSum+ " €");
             totalPrice = totalPrice + productPriceSum;
         }
         System.out.println("TOTAL PRICE " + totalPrice + " €");
